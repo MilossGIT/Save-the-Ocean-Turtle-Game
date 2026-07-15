@@ -16,37 +16,8 @@ echo "==> Installing build tools (one-time)..."
 python3 -m pip install -q -r requirements-build.txt
 
 echo "==> Creating app icon..."
-ICON_PNG="$ROOT/assets/app_icon.png"
+python3 scripts/build_app_icon.py
 ICON_ICNS="$ROOT/assets/app_icon.icns"
-if [ ! -f "$ICON_ICNS" ]; then
-  python3 - <<'PY'
-from pathlib import Path
-from PIL import Image
-
-root = Path(".")
-src = root / "assets/turtle/turtle_swim_0.png"
-out = root / "assets/app_icon.png"
-img = Image.open(src).convert("RGBA")
-size = 512
-canvas = Image.new("RGBA", (size, size), (10, 120, 180, 255))
-scale = min(size * 0.82 / img.width, size * 0.82 / img.height)
-nw, nh = int(img.width * scale), int(img.height * scale)
-img = img.resize((nw, nh), Image.Resampling.LANCZOS)
-canvas.paste(img, ((size - nw) // 2, (size - nh) // 2), img)
-canvas.save(out)
-print(f"  wrote {out}")
-PY
-  ICONSET="$ROOT/assets/app_icon.iconset"
-  rm -rf "$ICONSET"
-  mkdir -p "$ICONSET"
-  for dim in 16 32 64 128 256 512; do
-    sips -z "$dim" "$dim" "$ICON_PNG" --out "$ICONSET/icon_${dim}x${dim}.png" >/dev/null
-    d2=$((dim * 2))
-    sips -z "$d2" "$d2" "$ICON_PNG" --out "$ICONSET/icon_${dim}x${dim}@2x.png" >/dev/null
-  done
-  iconutil -c icns "$ICONSET" -o "$ICON_ICNS"
-  rm -rf "$ICONSET"
-fi
 
 echo "==> Building $APP_NAME.app (this may take a minute)..."
 python3 -m PyInstaller \
