@@ -50,10 +50,14 @@ When it finishes, you'll have:
 dist/Save the Ocean.app
 ```
 
-**Put it on your Desktop:**
+**Put it on your Desktop:** the build script tries to install automatically. If you see `Operation not permitted`, macOS is blocking an overwrite of the old app — quit the game, **drag the old Desktop app to Trash in Finder**, then run the build again.
+
+Manual install (use Finder or `ditto`, not `cp -R`):
 
 ```bash
-cp -R "dist/Save the Ocean.app" ~/Desktop/
+osascript -e 'quit app "Save the Ocean"' 2>/dev/null || true
+# In Finder: move ~/Desktop/Save the Ocean.app to Trash, then:
+ditto "dist/Save the Ocean.app" ~/Desktop/"Save the Ocean.app"
 ```
 
 Double-click **Save the Ocean** to play. Your save file is stored in  
