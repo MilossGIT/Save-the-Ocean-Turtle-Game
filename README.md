@@ -15,7 +15,9 @@ A fun, kid-friendly endless ocean game for ages **7 and up**. Help a sea turtle 
 - **Up / Down arrows** — swim up and down to dodge obstacles
 - **Left / Right arrows** — move around the ocean
 - **Space** — start or play again
-- **Esc** — pause (during game) or quit (from menu)
+- **Esc** — pause / resume (during game)
+- **Space** — start or restart (menu, pause, or game over)
+- **Q** — return to menu (while paused)
 - **M** — toggle sound on/off
 - **F** or **F11** — toggle fullscreen
 - **Drag window corner** — resize the window (game scales up smoothly)

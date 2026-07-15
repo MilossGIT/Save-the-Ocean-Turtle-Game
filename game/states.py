@@ -231,6 +231,11 @@ class GameSession:
                 elif self.state == GameState.GAME_OVER:
                     self.reset()
                     self.state = GameState.PLAYING
+                elif self.state == GameState.PAUSED:
+                    self.reset()
+                    self.state = GameState.PLAYING
+            if event.key == pygame.K_q and self.state == GameState.PAUSED:
+                self.state = GameState.MENU
             if event.key == pygame.K_c and self.state == GameState.MENU:
                 self.state = GameState.COSMETICS
             if event.key == pygame.K_e and self.state == GameState.MENU:

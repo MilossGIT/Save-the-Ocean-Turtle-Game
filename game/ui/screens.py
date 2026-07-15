@@ -102,8 +102,10 @@ class Screens:
         overlay = pygame.Surface((cfg.SCREEN_WIDTH, cfg.SCREEN_HEIGHT), pygame.SRCALPHA)
         overlay.fill((0, 0, 0, 130))
         surface.blit(overlay, (0, 0))
-        fonts.blit_centered(surface, "Paused", cfg.SCREEN_HEIGHT // 2 - 24, 44)
-        fonts.blit_centered(surface, "ESC to resume", cfg.SCREEN_HEIGHT // 2 + 28, 24, bold=False)
+        fonts.blit_centered(surface, "Paused", cfg.SCREEN_HEIGHT // 2 - 52, 44)
+        fonts.blit_centered(surface, "ESC — resume", cfg.SCREEN_HEIGHT // 2 - 4, 24, bold=False)
+        fonts.blit_centered(surface, "SPACE — restart run", cfg.SCREEN_HEIGHT // 2 + 28, 24, cfg.UI_YELLOW, bold=False)
+        fonts.blit_centered(surface, "Q — return to menu", cfg.SCREEN_HEIGHT // 2 + 58, 22, bold=False)
 
     def draw_game_over(self, surface: pygame.Surface, score: int, stats: RunStats, save: SaveData, mission_done: bool) -> None:
         overlay = pygame.Surface((cfg.SCREEN_WIDTH, cfg.SCREEN_HEIGHT), pygame.SRCALPHA)
